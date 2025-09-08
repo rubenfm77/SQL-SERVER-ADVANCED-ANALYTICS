@@ -159,7 +159,7 @@ WHERE ORDER_DATE IS NOT NULL
 GROUP BY ORDER_DATE
 ORDER BY ORDER_DATE
 ```
-4. Some companies want to monitor daily sales for budgeting, but in general we aggregate at month or year level with date functions. Note that we need to use the date function in group and order by to get the correct results. We cab see that sales in 2014 are really low compared with previous years:
+4. Some companies want to monitor daily sales for budgeting, but in general we aggregate at month or year level with date functions. Note that we need to use the date function in group and order by to get the correct results. We can see that sales in 2014 are really low compared with previous years:
 ```sql
 SELECT 
 YEAR(ORDER_DATE) AS ORDER_YEAR,
@@ -169,7 +169,7 @@ WHERE ORDER_DATE IS NOT NULL
 GROUP BY YEAR(ORDER_DATE)
 ORDER BY YEAR(ORDER_DATE)
 ```
-5. We'll try to dig deeper into our data and see if there's any change in the number of customers where we can see a huge decrease in 2014:
+5. We'll try to dig deeper into our data and see if there's any change in the number of customers. We can see a huge decrease in sales during 2014:
 ```sql
 SELECT 
 YEAR(ORDER_DATE) AS ORDER_YEAR,
