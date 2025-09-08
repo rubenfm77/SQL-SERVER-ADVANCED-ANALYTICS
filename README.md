@@ -149,4 +149,23 @@ FROM GOLD.FACT_SALES
 WHERE ORDER_DATE IS NOT NULL
 ORDER BY ORDER_DATE
 ```
-
+3. We can aggregate the sales and group them by date:
+```sql
+SELECT 
+ORDER_DATE,
+SUM(SALES_AMOUNT) AS TOTAL_SALES
+FROM GOLD.FACT_SALES
+WHERE ORDER_DATE IS NOT NULL
+GROUP BY ORDER_DATE
+ORDER BY ORDER_DATE
+```
+4. Some companies want to monitor daily sales for budgeting, but in general we aggregate at month or year level with date functions. Note that we need to use the date function in group and order by to get the correct results:
+```sql
+SELECT 
+YEAR(ORDER_DATE) AS ORDER_YEAR,
+SUM(SALES_AMOUNT) AS TOTAL_SALES
+FROM GOLD.FACT_SALES
+WHERE ORDER_DATE IS NOT NULL
+GROUP BY YEAR(ORDER_DATE)
+ORDER BY YEAR(ORDER_DATE)
+```
