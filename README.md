@@ -228,7 +228,7 @@ WHERE ORDER_DATE IS NOT NULL
 GROUP BY YEAR(ORDER_DATE), MONTH(ORDER_DATE)
 ORDER BY YEAR(ORDER_DATE), MONTH(ORDER_DATE)
 ```
-10. We can truncate month and year wiht Datetrunc:
+10. We can truncate month and year with Datetrunc function:
 ```sql
 SELECT
 DATETRUNC(MONTH, ORDER_DATE) AS ORDER_YEAR,
