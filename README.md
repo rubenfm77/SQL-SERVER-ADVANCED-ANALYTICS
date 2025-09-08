@@ -17,7 +17,7 @@ WARNING:
 USE master;
 GO
 ```
--- Drop and recreate the 'DataWarehouseAnalytics' database
+Drop and recreate the 'DataWarehouseAnalytics' database
 ```sql
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouseAnalytics')
 BEGIN
@@ -26,7 +26,7 @@ BEGIN
 END;
 GO
 ```
--- Create the 'DataWarehouseAnalytics' database
+Create the 'DataWarehouseAnalytics' database
 
 ```sql
 CREATE DATABASE DataWarehouseAnalytics;
@@ -35,7 +35,7 @@ GO
 USE DataWarehouseAnalytics;
 GO
 ```
--- Create Schemas
+Create Schemas
 
 ```sql
 CREATE SCHEMA gold;
