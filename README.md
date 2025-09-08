@@ -17,7 +17,7 @@ WARNING:
 USE master;
 GO
 ```
-Drop and recreate the 'DataWarehouseAnalytics' database
+Drop and recreate the 'DataWarehouseAnalytics' database:
 ```sql
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouseAnalytics')
 BEGIN
@@ -26,7 +26,7 @@ BEGIN
 END;
 GO
 ```
-Create the 'DataWarehouseAnalytics' database
+Create the 'DataWarehouseAnalytics' database:
 
 ```sql
 CREATE DATABASE DataWarehouseAnalytics;
@@ -35,7 +35,7 @@ GO
 USE DataWarehouseAnalytics;
 GO
 ```
-Create Schemas
+Create Schemas:
 
 ```sql
 CREATE SCHEMA gold;
@@ -159,7 +159,7 @@ WHERE ORDER_DATE IS NOT NULL
 GROUP BY ORDER_DATE
 ORDER BY ORDER_DATE
 ```
-4. Some companies want to monitor daily sales for budgeting, but in general we aggregate at month or year level with date functions. Note that we need to use the date function in group and order by to get the correct results. We cab see that sales in 2014 are really low compared with previous years.
+4. Some companies want to monitor daily sales for budgeting, but in general we aggregate at month or year level with date functions. Note that we need to use the date function in group and order by to get the correct results. We cab see that sales in 2014 are really low compared with previous years:
 ```sql
 SELECT 
 YEAR(ORDER_DATE) AS ORDER_YEAR,
@@ -180,7 +180,7 @@ WHERE ORDER_DATE IS NOT NULL
 GROUP BY YEAR(ORDER_DATE)
 ORDER BY YEAR(ORDER_DATE)
 ```
-6. We can also check the quantity
+6. We can also check the quantity:
 ```sql
 SELECT 
 YEAR(ORDER_DATE) AS ORDER_YEAR,
@@ -190,4 +190,41 @@ SUM(QUANTITY) AS TOTAL_QUANTITY
 FROM GOLD.FACT_SALES
 WHERE ORDER_DATE IS NOT NULL
 GROUP BY YEAR(ORDER_DATE)
+```
+7. We can also check the performance by month changing year for month, where we can see the seasonality with the most sales in december and least sales in February:
+```sql
+MONTH(ORDER_DATE) AS ORDER_MONTH,
+SUM(SALES_AMOUNT) AS TOTAL_SALES,
+COUNT(DISTINCT CUSTOMER_KEY) AS TOTAL_CUSTOMERS,
+SUM(QUANTITY) AS TOTAL_QUANTITY
+FROM GOLD.FACT_SALES
+WHERE ORDER_DATE IS NOT NULL
+GROUP BY MONTH(ORDER_DATE)
+ORDER BY MONTH(ORDER_DATE)
+```
+8. Seems a good idea to check the previous variables, not only by month but also by year:
+```sql
+SELECT
+YEAR(ORDER_DATE) AS ORDER_YEAR,
+MONTH(ORDER_DATE) AS ORDER_MONTH,
+SUM(SALES_AMOUNT) AS TOTAL_SALES,
+COUNT(DISTINCT CUSTOMER_KEY) AS TOTAL_CUSTOMERS,
+SUM(QUANTITY) AS TOTAL_QUANTITY
+FROM GOLD.FACT_SALES
+WHERE ORDER_DATE IS NOT NULL
+GROUP BY YEAR(ORDER_DATE), MONTH(ORDER_DATE)
+ORDER BY YEAR(ORDER_DATE), MONTH(ORDER_DATE)
+```
+9. Seems a good idea to check the previous variables, not only by month but also by year:
+```sql
+SELECT
+YEAR(ORDER_DATE) AS ORDER_YEAR,
+MONTH(ORDER_DATE) AS ORDER_MONTH,
+SUM(SALES_AMOUNT) AS TOTAL_SALES,
+COUNT(DISTINCT CUSTOMER_KEY) AS TOTAL_CUSTOMERS,
+SUM(QUANTITY) AS TOTAL_QUANTITY
+FROM GOLD.FACT_SALES
+WHERE ORDER_DATE IS NOT NULL
+GROUP BY YEAR(ORDER_DATE), MONTH(ORDER_DATE)
+ORDER BY YEAR(ORDER_DATE), MONTH(ORDER_DATE)
 ```
