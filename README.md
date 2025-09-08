@@ -130,4 +130,23 @@ WITH (
 );
 GO
 ```
+### EXPLORATORY ANALYSIS
+
+1. We can analyse sales by date and sales amount, but we see that there are several order_date with null values:
+```sql
+SELECT 
+ORDER_DATE,
+SALES_AMOUNT
+FROM GOLD.FACT_SALES
+ORDER BY ORDER_DATE
+```
+2. We repeat the query avoiding null values:
+```sql
+SELECT 
+ORDER_DATE,
+SALES_AMOUNT
+FROM GOLD.FACT_SALES
+WHERE ORDER_DATE IS NOT NULL
+ORDER BY ORDER_DATE
+```
 
