@@ -319,3 +319,25 @@ ORDER BY PRODUCT_NAME, ORDER_YEAR
 ```
 
 ### PART-TO-WHOLE ANALYSIS
+
+We use this kind of analysis, for example, to check how one product contributes to the total sales. 
+
+14. In this case we are going to try to see what categories contribute the most to the total sales. We can see the top performing category are, by far, bikes:
+```sql
+WITH CATEGORY_SALES AS(
+SELECT
+CATEGORY,
+SUM(SALES_AMOUNT) TOTAL_SALES
+FROM GOLD.FACT_SALES F
+LEFT JOIN GOLD.DIM_PRODUCTS P
+ON P.PRODUCT_KEY = F.PRODUCT_KEY
+GROUP BY CATEGORY)
+
+SELECT
+CATEGORY,
+TOTAL_SALES,
+SUM(TOTAL_SALES) OVER() OVERALL_SALES,
+CONCAT(ROUND((CAST (TOTAL_SALES AS FLOAT)/SUM(TOTAL_SALES) OVER())*100, 2), '%') AS PERCENTAGE_OF_TOTAL
+FROM CATEGORY_SALES
+ORDER BY TOTAL_SALES DESC
+```
