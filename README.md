@@ -367,3 +367,5 @@ FROM PRODUCT_SEGMENTS
 GROUP BY COST_RANGE
 ORDER BY TOTAL_PRODUCTS DESC
 ```
+16. Now we are going to segment customers based on their expense behavior, based on VIP with at least 12 months of history and spending more than 5000, Regular with at least 12 months of history and spending 5000 or less and New with lifespan of less than 12 months:
+```sql
