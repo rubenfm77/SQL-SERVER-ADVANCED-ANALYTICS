@@ -320,7 +320,7 @@ ORDER BY PRODUCT_NAME, ORDER_YEAR
 
 ### PART-TO-WHOLE ANALYSIS
 
-We use this kind of analysis, for example, to check how one product contributes to the total sales. 
+We use this kind of analysis, for example, to check how one product contributes to the total sales. Like in the previous exercise we can try the same analysis with our customer or number of orders.
 
 14. In this case we are going to try to see what categories contribute the most to the total sales. We can see the top performing category are, by far, bikes:
 ```sql
@@ -340,4 +340,30 @@ SUM(TOTAL_SALES) OVER() OVERALL_SALES,
 CONCAT(ROUND((CAST (TOTAL_SALES AS FLOAT)/SUM(TOTAL_SALES) OVER())*100, 2), '%') AS PERCENTAGE_OF_TOTAL
 FROM CATEGORY_SALES
 ORDER BY TOTAL_SALES DESC
+```
+
+### DATA SEGMENTATION
+
+We group the data based on a specific range. For example we can analyse the total products by sale range, total customers by age group etc usin Case When.
+
+15. We are going to segment products into cost ranges and count how many products fall into each segment:
+```sql
+WITH PRODUCT_SEGMENTS AS(
+SELECT 
+PRODUCT_KEY,
+PRODUCT_NAME,
+COST,
+CASE WHEN COST < 100 THEN 'BELOW 100'
+	 WHEN COST BETWEEN 100 AND 500 THEN '100-500'
+	 WHEN COST BETWEEN 500 AND 1000 THEN '500-1000'
+	 ELSE 'ABOVE 1000'
+END COST_RANGE
+FROM GOLD.DIM_PRODUCTS)
+
+SELECT 
+COST_RANGE,
+COUNT(PRODUCT_KEY) AS TOTAL_PRODUCTS
+FROM PRODUCT_SEGMENTS
+GROUP BY COST_RANGE
+ORDER BY TOTAL_PRODUCTS DESC
 ```
