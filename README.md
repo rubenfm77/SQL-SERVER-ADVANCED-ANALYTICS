@@ -369,3 +369,49 @@ ORDER BY TOTAL_PRODUCTS DESC
 ```
 16. Now we are going to segment customers based on their expense behavior, based on VIP with at least 12 months of history and spending more than 5000, Regular with at least 12 months of history and spending 5000 or less and New with lifespan of less than 12 months:
 ```sql
+WITH CUSTOMER_SPENDING AS(
+SELECT 
+C.CUSTOMER_KEY,
+SUM(F.SALES_AMOUNT) AS TOTAL_SPENDING,
+MIN(ORDER_DATE) AS FIRST_ORDER,
+MAX(ORDER_DATE) AS LAST_ORDER,
+DATEDIFF(MONTH, MIN(ORDER_DATE), MAX(ORDER_DATE)) AS LIFESPAN
+FROM GOLD.FACT_SALES F
+LEFT JOIN GOLD.DIM_CUSTOMERS C
+ON F.CUSTOMER_KEY = C.CUSTOMER_KEY
+GROUP BY C.CUSTOMER_KEY
+)
+
+SELECT 
+CUSTOMER_SEGMENT,
+COUNT(CUSTOMER_KEY) AS TOTAL_CUSTOMERS
+FROM(
+	SELECT 
+	CUSTOMER_KEY,
+	CASE WHEN LIFESPAN >= 12 AND TOTAL_SPENDING > 5000 THEN 'VIP'
+	     WHEN LIFESPAN >= 12 AND TOTAL_SPENDING <= 5000 THEN'REGULAR'
+	     ELSE 'NEW'
+	END CUSTOMER_SEGMENT
+	FROM CUSTOMER_SPENDING) T
+	GROUP BY CUSTOMER_SEGMENT
+	ORDER BY TOTAL_CUSTOMERS DESC
+```
+
+### BUILDING A CUSTOMER REPORT
+
+Purpose:
+    - This report consolidates key customer metrics and behaviors
+
+Highlights:
+    1. Gathers essential fields such as names, ages, and transaction details.
+	2. Segments customers into categories (VIP, Regular, New) and age groups.
+    3. Aggregates customer-level metrics:
+	   - total orders
+	   - total sales
+	   - total quantity purchased
+	   - total products
+	   - lifespan (in months)
+    4. Calculates valuable KPIs:
+	    - recency (months since last order)
+		- average order value
+		- average monthly spend
