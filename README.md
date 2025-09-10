@@ -573,4 +573,4 @@ FROM PRODUCT_AGGREGATION
 
 ### SIMILAR EXERCISE IN POWER BI
 
-
+We could use the two previous tables we have created in SQL for products and customers or try to do it from scratch with CSV files by creating a Power BI data model, that it's gonna be our exercise in order to see if we get the same results.
