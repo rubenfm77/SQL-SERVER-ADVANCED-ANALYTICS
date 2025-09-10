@@ -1,4 +1,4 @@
-# SQL SERVER ADVANCED ANALYTICS in progress
+# ADVANCED ANALYTICS IN SQL SERVER AND POWER BI in progress
 
 Here you'll find SQL queries very helpful for sales advanced analytics, in this case, for one of my favourite subjects/objects: bikes. Check out Baraa profile and follow him on Youtube and Github: https://github.com/DataWithBaraa
 
