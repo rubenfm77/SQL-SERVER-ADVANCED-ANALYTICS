@@ -581,3 +581,8 @@ We could use the two previous tables we have created in SQL for products and cus
 Once we have our data model, I usually check with some tables that our measures are working correctly. In this case: sales, yoy, yoytd, budget, budget allocation and the if we are in the target zone for the month and the aggregate values:
 
 ![Check]( https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/blob/main/CHECK.jpg)
+
+1. We begin by analyzing products, customers and regions. We can see that 37% of customers repeat a purchase but a more in depth analysis shows that last years data is worse. By regions, there are several UE countries with no purchases and sales in Canada are really low.
+
+![Check]( https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/blob/main/SALES.jpg)   
+   
