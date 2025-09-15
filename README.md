@@ -193,6 +193,7 @@ GROUP BY YEAR(ORDER_DATE)
 ```
 7. We can also check the performance by month changing year for month, where we can see the seasonality with the most sales in december and least sales in February:
 ```sql
+SELECT 
 MONTH(ORDER_DATE) AS ORDER_MONTH,
 SUM(SALES_AMOUNT) AS TOTAL_SALES,
 COUNT(DISTINCT CUSTOMER_KEY) AS TOTAL_CUSTOMERS,
@@ -574,3 +575,7 @@ FROM PRODUCT_AGGREGATION
 ### SIMILAR EXERCISE IN POWER BI
 
 We could use the two previous tables we have created in SQL for products and customers or try to do it from scratch with CSV files by creating a Power BI data model, that it's gonna be our exercise in order to see if we get the same results.
+
+Once we have our data model, I usually check with some tables that our measures are working correctly. In this case: sales, yoy, yoytd, budget, budget allocation and the if we are in the target zone for the month and the aggregate values.
+
+
