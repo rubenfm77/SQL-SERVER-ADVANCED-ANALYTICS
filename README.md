@@ -574,7 +574,10 @@ FROM PRODUCT_AGGREGATION
 
 ### SIMILAR EXERCISE IN POWER BI
 
+![PowerBI](https://github.com/rubenfm77/POWER-BI/blob/main/LOGO.jpg)
+
 We could use the two previous tables we have created in SQL for products and customers or try to do it from scratch with CSV files by creating a Power BI data model, that it's gonna be our exercise in order to see if we get the same results.
 
-Once we have our data model, I usually check with some tables that our measures are working correctly. In this case: sales, yoy, yoytd, budget, budget allocation and the if we are in the target zone for the month and the aggregate values.
-![PowerBI](https://github.com/rubenfm77/POWER-BI/blob/main/LOGO.jpg)
+Once we have our data model, I usually check with some tables that our measures are working correctly. In this case: sales, yoy, yoytd, budget, budget allocation and the if we are in the target zone for the month and the aggregate values:
+
+![Check]( https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/blob/main/CHECK.jpg)
