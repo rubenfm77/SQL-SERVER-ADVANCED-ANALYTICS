@@ -584,8 +584,8 @@ Once we have our data model, I usually check with some tables that our measures 
 
 We begin by analyzing products, customers and regions. We can see that 37% of customers repeat a purchase but a more in depth analysis shows that last years data is worse. By regions, there are several UE countries with no purchases and sales in Canada are really low. 
 
+![sales]( https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/blob/main/SALES.jpg)   
+
 We can also see the seasonality of our sales and also that many customers are not doing any more purchases in the futures months/years. It's important to activate the sales of other products (accessories etc.) and try to increase the profit in some product lines, specially if we compare between them.
 
-![sales]( https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/blob/main/SALES.jpg)    
-   
 ![sales1]( https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/blob/main/SALES1.jpg) 
